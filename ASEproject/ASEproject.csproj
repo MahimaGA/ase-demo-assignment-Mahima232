@@ -8,4 +8,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="BOOSE">
+      <HintPath>..\..\ase-demo-assignment-Mahima232-main\ASF Assignment Demo\ddl file\BOOSE.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
