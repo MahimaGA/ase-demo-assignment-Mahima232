@@ -28,12 +28,57 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            Run = new Button();
+            ProgramWindow = new TextBox();
+            OutputWindow = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)OutputWindow).BeginInit();
+            SuspendLayout();
+            // 
+            // Run
+            // 
+            Run.Location = new Point(43, 36);
+            Run.Name = "Run";
+            Run.Size = new Size(188, 58);
+            Run.TabIndex = 0;
+            Run.Text = "Run";
+            Run.UseVisualStyleBackColor = true;
+            // 
+            // ProgramWindow
+            // 
+            ProgramWindow.Location = new Point(44, 124);
+            ProgramWindow.Multiline = true;
+            ProgramWindow.Name = "ProgramWindow";
+            ProgramWindow.Size = new Size(629, 481);
+            ProgramWindow.TabIndex = 1;
+            // 
+            // OutputWindow
+            // 
+            OutputWindow.BackColor = SystemColors.ControlDark;
+            OutputWindow.Location = new Point(722, 124);
+            OutputWindow.Name = "OutputWindow";
+            OutputWindow.Size = new Size(629, 481);
+            OutputWindow.TabIndex = 2;
+            OutputWindow.TabStop = false;
+            // 
+            // Form1
+            // 
+            AutoScaleDimensions = new SizeF(17F, 41F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1456, 697);
+            Controls.Add(OutputWindow);
+            Controls.Add(ProgramWindow);
+            Controls.Add(Run);
+            Name = "Form1";
+            Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)OutputWindow).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Button Run;
+        private TextBox ProgramWindow;
+        private PictureBox OutputWindow;
     }
 }
