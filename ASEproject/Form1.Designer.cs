@@ -42,6 +42,7 @@
             Run.TabIndex = 0;
             Run.Text = "Run";
             Run.UseVisualStyleBackColor = true;
+            Run.Click += Run_Click;
             // 
             // ProgramWindow
             // 
@@ -59,6 +60,7 @@
             OutputWindow.Size = new Size(629, 481);
             OutputWindow.TabIndex = 2;
             OutputWindow.TabStop = false;
+            OutputWindow.Paint += OutputWindow_Paint;
             // 
             // Form1
             // 
