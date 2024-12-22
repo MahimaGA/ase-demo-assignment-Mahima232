@@ -11,9 +11,10 @@ namespace ASEproject
     {
         private int xPos, yPos; //pen position
         private Color penColour;
-        private Pen Pen;
+        private Pen pen;
+        private SolidBrush brush;
         private int penSize = 5;
-        int XCanvasSize, YCanvasSize;
+        int xCanvasSize, yCanvasSize;
         const int XSIZE = 640; //standard size of canvas
         const int YSIZE = 480;
         
@@ -24,18 +25,21 @@ namespace ASEproject
         public AppCanvas()
         {
             Set(XSIZE, YSIZE);
+            penColour = Color.Black;
+            pen = new Pen(penColour, penSize);
+            brush = new SolidBrush(penColour);
         }
 
         public int Xpos 
         { 
-            get => xpos; 
-            set => xpos = value; 
+            get => xPos; 
+            set => xPos = value; 
         }
 
         public int Ypos 
         { 
-            get => ypos; 
-            set => ypos = value; 
+            get => yPos; 
+            set => yPos = value; 
         }
         public object PenColour 
         { 
@@ -53,40 +57,38 @@ namespace ASEproject
            {
                 if (!filled)
                 {
-                    g.DrawEllipse(Pen, xPos - radius, yPos - radius, radius * 2, radius * 2);
+                    g.DrawEllipse(pen, xPos - radius, yPos - radius, radius * 2, radius * 2);
                 }
            }
         }
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            g.Clear(Color.White);     
         }
 
         public void DrawTo(int toX, int toY)
         {
-            if (toX < 0 || toX > XCanvasSize || toX < 0 || toY > YCanvasSize)
+            if (toX < 0 || toX > xCanvasSize || toX < 0 || toY > yCanvasSize)
             {
                 throw new CanvasException("Invalid screen position drawto " + toX + "," + toY);
             }
             if (g != null)
             {
-                g.DrawLine(Pen, Xpos, Ypos, toX, toY); //draw the line
+                g.DrawLine(pen, Xpos, Ypos, toX, toY); //draw the line
             }
             xPos = toX;
             yPos = toY; //update pen position
-
-
         }
 
         public object getBitmap()
         {
-            throw new NotImplementedException();
+            return bm;
         }
 
         public void MoveTo(int x, int y)
         {
-           if (x<0 || x >XCanvasSize || y<0 || y >YCanvasSize)
+           if (x<0 || x >xCanvasSize || y<0 || y >yCanvasSize)
             {
                 throw new CanvasException("Invalid screen position CMoveTo" + x + "," + y);
             }
@@ -96,20 +98,30 @@ namespace ASEproject
 
         public void Rect(int width, int height, bool filled)
         {
-            throw new NotImplementedException();
+            if (width < 0 || height < 0)
+            {
+                throw new CanvasException("Invalid rectangle dimensions " + width + "," + height);
+            }
+            if (g != null)
+            {
+                if (!filled)
+                {
+                    g.DrawRectangle(pen, xPos, yPos, width, height);
+                }
+            }
         }
 
         public void Reset()
         {
-            throw new NotImplementedException();
+            xPos =yPos= 0;
+            penColour = Color.Black;
         }
 
         public void Set(int xsize, int ysize)
         {
-            XCanvasSize = xsize;
-            YCanvasSize = ysize;
-            xpos = ypos= 0;
-            XCanvasSize = xsize;
+            xCanvasSize = xsize;
+            yCanvasSize = ysize;
+            xPos = yPos= 0;
             g = Graphics.FromImage(bm);
         }
 
@@ -120,18 +132,32 @@ namespace ASEproject
             throw new ArgumentException("Invalid colour" + red + "," + green + "," + blue);
             }
             penColour = Color.FromArgb(red, green, blue); //alpha of 255
-            Pen = new Pen(penColour, penSize);
+            pen = new Pen(penColour, penSize);
+            brush = new SolidBrush(penColour);
             
         }
 
         public void Tri(int width, int height)
         {
-            throw new NotImplementedException();
+            if (width < 0 || height < 0)
+            {
+                throw new CanvasException("Invalid triangle dimensions " + width + "," + height);
+            }
+            if (g != null)
+            {
+                Point[] p = new Point[3];
+                p[0] = new Point((xPos+width)/2, yPos);
+                p[1] = new Point(xPos, yPos+height);
+                p[2] = new Point(xPos+width, yPos+height);
+
+                g.DrawPolygon(pen, p);
+            }
         }
 
         public void WriteText(string text)
         {
-            throw new NotImplementedException();
+            Font font = new Font("Arial", 10);
+            g.DrawString(text, font, brush, Xpos, Ypos);
         }
     }
 }
