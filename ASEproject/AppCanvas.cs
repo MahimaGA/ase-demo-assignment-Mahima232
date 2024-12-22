@@ -59,6 +59,11 @@ namespace ASEproject
                 {
                     g.DrawEllipse(pen, xPos - radius, yPos - radius, radius * 2, radius * 2);
                 }
+                else
+                {
+                    g.FillEllipse(brush, xPos - radius, yPos - radius, radius * 2, radius * 2);
+                }
+
            }
         }
 

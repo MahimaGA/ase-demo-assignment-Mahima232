@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace ASEproject
 {
+
     public class Tri : CommandTwoParameters
     {
         private int width, height;

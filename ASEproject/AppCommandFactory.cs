@@ -16,6 +16,10 @@ namespace ASEproject
             {
                 return new Tri();
             }
+            if (commandType == "write")
+            {
+                return new Write();
+            }
 
             return base.MakeCommand(commandType);
         }
