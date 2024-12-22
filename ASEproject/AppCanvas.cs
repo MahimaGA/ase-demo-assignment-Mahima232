@@ -10,7 +10,7 @@ namespace ASEproject
     /// <summary>
     /// Represents the canvas
     /// </summary>
-    internal class AppCanvas : ICanvas
+    public class AppCanvas : ICanvas
     {
         private int xPos, yPos; //pen position
         private Color penColour;
@@ -22,8 +22,9 @@ namespace ASEproject
         const int YSIZE = 480;
         
         Bitmap bm = new Bitmap(XSIZE, YSIZE);
+        
+        private Graphics? g; //declaring g as nullable if it can remain nullable temporarily
 
-        Graphics g;
 
         /// <summary>
         /// initializes new instance of the <see cref="AppCanvas"/> class
@@ -34,6 +35,8 @@ namespace ASEproject
             penColour = Color.Black;
             pen = new Pen(penColour, penSize);
             brush = new SolidBrush(penColour);
+
+            g = Graphics.FromImage(bm);
         }
         /// <summary>
         /// gets sets the X position of pen
