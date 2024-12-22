@@ -22,7 +22,10 @@ namespace ASEproject
 
         private void Run_Click(object sender, EventArgs e)
         {
+            String syntaxErrorList = "";
+            String runtimeErrorList = "";
             String text = ProgramWindow.Text;
+
             parser.ParseProgram(text);
             storedProgram.Run();
             Refresh();
