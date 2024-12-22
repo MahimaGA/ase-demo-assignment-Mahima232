@@ -15,7 +15,7 @@ namespace ASEproject
             InitializeComponent();
             Debug.WriteLine(AboutBOOSE.about());
             canvas = new AppCanvas();
-            commandFactory = new CommandFactory();
+            commandFactory = new AppCommandFactory();
             storedProgram = new StoredProgram(canvas);
             parser = new Parser(commandFactory, storedProgram);
         }
