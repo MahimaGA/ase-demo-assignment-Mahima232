@@ -1,6 +1,7 @@
 ﻿using BOOSE;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -96,7 +97,15 @@ namespace ASEproject
         /// </summary>
         public void Clear()
         {
-            g.Clear(Color.White);     
+
+
+            if (g == null)
+            {
+                throw new InvalidOperationException("Graphics object is not initialized. Did you forget to call Set()?");
+            }
+
+            g.Clear(Color.Gray); // Clears the canvas with a gray background.
+            Debug.WriteLine("Canvas cleared.");
         }
 
         /// <summary>

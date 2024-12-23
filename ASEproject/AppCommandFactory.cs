@@ -18,6 +18,7 @@ namespace ASEproject
         /// <param name="commandType">To call the new command</param>
         /// <returns>an instance of the implemented class</returns>
         /// <exception cref="Exception">thrown if the commandType doesn't exist</exception>
+        
         public override ICommand MakeCommand(string commandType)
         {
             commandType = commandType.ToLower().Trim();
@@ -31,11 +32,11 @@ namespace ASEproject
             }
             if (commandType == "clear")
             {
-               // return new Clear();
+                return new Clear();
             }
             if (commandType == "reset")
             {
-                //return new Reset();
+                return new Reset();
             }
 
             try
