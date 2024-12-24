@@ -6,6 +6,9 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <BaseOutputPath>C:\Users\hp\source\repos\ase-demo-assignment-Mahima232\ASEproject\bin\Debug\net8.0-windows</BaseOutputPath>
+    <DocumentationFile></DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

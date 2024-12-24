@@ -6,6 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Contains the main classes and logic for the ASEproject application.
+/// </summary>
 namespace ASEproject
 {
     /// <summary>
