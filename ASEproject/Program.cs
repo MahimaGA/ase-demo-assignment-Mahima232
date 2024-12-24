@@ -1,3 +1,6 @@
+/// <summary>
+/// Contains the main classes and logic for the ASEproject application.
+/// </summary>
 namespace ASEproject
 {
     internal static class Program

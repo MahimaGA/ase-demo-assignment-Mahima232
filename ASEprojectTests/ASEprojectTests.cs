@@ -2,62 +2,158 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ASEproject;
 using System.Drawing;
 
-namespace ASEprojectTests
-{
-    [TestClass]
-    public class AppCanvasTests
+/// <summary>
+/// Contains the main classes and logic for the ASEproject application.
+/// </summary>
+namespace ASEproject
     {
-        public AppCanvas canvas;
-
-        [TestInitialize]
-        public void Setup()
+        [TestClass]
+        public class AppCanvasTests
         {
-            canvas = new AppCanvas();
-        }
+            private ASEproject.AppCanvas canvas;
 
-        [TestMethod]
-        public void TestMoveToCommand()
-        {
-            // Act
-            canvas.MoveTo(100, 150);
+            /// <summary>
+            /// Initializes a new instance of the AppCanvas class before each test.
+            /// </summary>
+            [TestInitialize]
+            public void Setup()
+            {
+                canvas = new AppCanvas();
+            }
 
-            // Assert
-            Assert.AreEqual(100, canvas.Xpos, "X position is not updated correctly.");
-            Assert.AreEqual(150, canvas.Ypos, "Y position is not updated correctly.");
-        }
+            /// <summary>
+            /// Tests setting the canvas size to specific dimensions.
+            /// </summary>
+            [TestMethod]
+            public void Test_SetCanvasSize()
+            {
+                canvas.Set(800, 600);
+                Assert.AreEqual(800, canvas.xCanvasSize);
+                Assert.AreEqual(600, canvas.yCanvasSize);
+            }
 
-        [TestMethod]
-        public void TestDrawToCommand()
-        {
-            // Arrange
-            canvas.MoveTo(50, 50);
+            /// <summary>
+            /// Tests moving the pen to a valid position.
+            /// </summary>
+            [TestMethod]
+            public void Test_MoveTo_ValidPosition()
+            {
+                canvas.MoveTo(100, 150);
+                Assert.AreEqual(100, canvas.Xpos);
+                Assert.AreEqual(150, canvas.Ypos);
+            }
+            [TestMethod]
+            [ExpectedException(typeof(Exception))]
+            public void Test_MoveTo_InvalidPosition()
+            {
+                canvas.MoveTo(-10, -10);
+            }
 
-            // Act
-            canvas.DrawTo(100, 150);
+            /// <summary>
+            /// Tests setting the pen color with valid RGB values.
+            /// </summary>
+            [TestMethod]
+            public void Test_SetColour_ValidValues()
+            {
+                canvas.SetColour(120, 200, 255);
+                Assert.AreEqual(Color.FromArgb(255, 120, 200, 255), canvas.PenColour);
+            }
 
-            // Assert
-            Assert.AreEqual(100, canvas.Xpos, "X position is not updated correctly after DrawTo.");
-            Assert.AreEqual(150, canvas.Ypos, "Y position is not updated correctly after DrawTo.");
-        }
+            /// <summary>
+            /// Tests setting the pen color with invalid RGB values, expecting an exception.
+            /// </summary>
+            [TestMethod]
+            [ExpectedException(typeof(Exception))]
+            public void Test_SetColour_InvalidValues()
+            {
+                canvas.SetColour(300, 0, 0);
+            }
 
-        [TestMethod]
-        public void TestMultiLineProgram()
-        {
-            // Arrange
-            canvas.Set(200, 200); // Resize canvas for test
-            canvas.MoveTo(10, 10);
-            canvas.SetColour(255, 0, 0); // Red color
-            canvas.DrawTo(100, 10); // Horizontal line
-            canvas.DrawTo(100, 100); // Vertical line
-            canvas.DrawTo(10, 100); // Another horizontal line
-            canvas.DrawTo(10, 10); // Close the box
+            /// <summary>
+            /// Tests drawing a rectangle with valid dimensions.
+            /// </summary>
+            [TestMethod]
+            public void Test_DrawRectangle()
+            {
+                canvas.MoveTo(50, 50);
+                canvas.Rect(100, 50, true);
+            }
+            /// <summary>
+            /// Tests drawing a rectangle with invalid dimensions, expecting an exception.
+            /// </summary>
+            [TestMethod]
+            [ExpectedException(typeof(Exception))]
+            public void Test_DrawRectangle_InvalidDimensions()
+            {
+                canvas.Rect(-10, 20, false);
+            }
 
-            // Assert the final pen position
-            Assert.AreEqual(10, canvas.Xpos, "Final X position is not correct.");
-            Assert.AreEqual(10, canvas.Ypos, "Final Y position is not correct.");
+            /// <summary>
+            /// Tests drawing a circle with a valid radius.
+            /// </summary>
+            [TestMethod]
+            public void Test_DrawCircle_Valid()
+            {
+                canvas.MoveTo(100, 100);
+                canvas.Circle(50, false);
+            }
 
-            // Validate bitmap (basic check for no exceptions/errors)
-            Assert.IsNotNull(canvas.getBitmap(), "Bitmap should not be null after drawing.");
+            /// <summary>
+            /// Tests drawing a circle with an invalid radius, expecting an exception.
+            /// </summary>
+            [TestMethod]
+            [ExpectedException(typeof(Exception))]
+            public void Test_DrawCircle_InvalidRadius()
+            {
+                canvas.Circle(-10, false);
+            }
+
+            /// <summary>
+            /// Tests clearing the canvas.
+            /// </summary>
+            [TestMethod]
+            public void Test_ClearCanvas()
+            {
+                canvas.Clear();
+            }
+
+            /// <summary>
+            /// Tests drawing a triangle with valid dimensions.
+            /// </summary>
+            [TestMethod]
+            public void Test_DrawTriangle_Valid()
+            {
+                canvas.MoveTo(100, 100);
+                canvas.Tri(60, 40);
+            }
+
+            /// <summary>
+            /// Tests drawing a triangle with invalid dimensions, expecting an exception.
+            /// </summary>
+            [TestMethod]
+            [ExpectedException(typeof(Exception))]
+            public void Test_DrawTriangle_InvalidDimensions()
+            {
+                canvas.Tri(-10, 20);
+            }
+
+            /// <summary>
+            /// Tests executing a multiline program with multiple MoveTo and DrawTo commands.
+            /// Verifies the final pen position.
+            /// </summary>
+            [TestMethod]
+            public void MultilineProgram_ExecutesCorrectly()
+            {
+                canvas.MoveTo(50, 50);
+                canvas.DrawTo(100, 100);
+                canvas.MoveTo(200, 200);
+                canvas.DrawTo(300, 300);
+
+                Assert.AreEqual(300, canvas.Xpos, "Final X position should be 300.");
+                Assert.AreEqual(300, canvas.Ypos, "Final Y position should be 300.");
+            }
         }
     }
-}
+
+
+
