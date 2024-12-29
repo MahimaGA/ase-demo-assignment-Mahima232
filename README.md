@@ -33,9 +33,13 @@ DONE
 	BOOSE DLL library installed 
 	call about method and display returned information in output/debug window
 	you can use System.Diagnostics to output to the debug window
+
+ DONE
 #### 6 Basic drawing commands of the library are implemented (2) 10 marks
 	Moveto, circle, rect, pencolour, write.
 	Unrestricted drawing programs can be run (1unrestrictedDrawing.boose)
+
+ DONE
 
 ### Tutor's Feedback
 
