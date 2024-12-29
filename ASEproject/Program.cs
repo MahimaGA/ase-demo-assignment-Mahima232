@@ -1,8 +1,9 @@
-/// <summary>
-/// Contains the main classes and logic for the ASEproject application.
-/// </summary>
+
 namespace ASEproject
 {
+    /// <summary>
+    /// contains the main classes and logic for the ASEproject application
+    /// </summary>
     internal static class Program
     {
         /// <summary>

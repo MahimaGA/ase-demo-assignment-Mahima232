@@ -33,13 +33,20 @@ namespace ASEproject
         /// <param name="e">event argument</param>
         private void Run_Click(object sender, EventArgs e)
         {
-            //String syntaxErrorList = "";
-            //String runtimeErrorList = "";
-            String text = ProgramWindow.Text;
+            try
+            {
+                //String syntaxErrorList = "";
+                //String runtimeErrorList = "";
+                String text = ProgramWindow.Text;
 
-            parser.ParseProgram(text);
-            storedProgram.Run();
-            Refresh();
+                parser.ParseProgram(text);
+                storedProgram.Run();
+                Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         /// <summary>
