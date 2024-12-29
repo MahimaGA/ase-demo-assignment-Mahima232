@@ -6,13 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-/// <summary>
-/// Contains the main classes and logic for the ASEproject application.
-/// </summary>
+
+//// <summary>
+//// Contains the main classes and logic for the ASEproject application.
+//// </summary>
 namespace ASEproject
 {
     /// <summary>
-    /// Represents the canvas
+    /// represents the canvas
     /// </summary>
     public class AppCanvas : ICanvas
     {
@@ -74,12 +75,12 @@ namespace ASEproject
         /// </summary>
         /// <param name="radius">radius of circle</param>
         /// <param name="filled">indicates whether the circle should be filled or not</param>
-        /// <exception cref="Exception">thrown if radius is invalid</exception>
+        /// <exception cref="CanvasException">thrown if radius is invalid</exception>
         public void Circle(int radius, bool filled)
         {
            if (radius < 0)
             {
-                throw new Exception("Invalid circle radius" + radius);
+                throw new CanvasException("Invalid circle radius" + radius);
             }
            if (g!= null)
            {
@@ -101,8 +102,6 @@ namespace ASEproject
         /// <exception cref="InvalidOperationException">thrown when object is not initialized</exception>
         public void Clear()
         {
-
-
             if (g == null)
             {
                 throw new InvalidOperationException("Graphics object is not initialized. Did you forget to call Set()?");
@@ -117,12 +116,12 @@ namespace ASEproject
         /// </summary>
         /// <param name="toX">X-coodinate of the destination</param>
         /// <param name="toY">Y-coodinate of the destination</param>
-        /// <exception cref="Exception">thrown if the destination coordinates are invalid</exception>
+        /// <exception cref="CanvasException">thrown if the destination coordinates are invalid</exception>
         public void DrawTo(int toX, int toY)
         {
             if (toX < 0 || toX > xCanvasSize || toX < 0 || toY > yCanvasSize)
             {
-                throw new Exception("Invalid screen position drawto " + toX + "," + toY);
+                throw new CanvasException("Invalid screen position drawto " + toX + "," + toY);
             }
             if (g != null)
             {
@@ -146,12 +145,12 @@ namespace ASEproject
         /// </summary>
         /// <param name="x">the X-coordinate of the new postion</param>
         /// <param name="y">the Y-coordinate of the new postion</param>
-        /// <exception cref="Exception">thrown if the cooordinates are invalid</exception>
+        /// <exception cref="CanvasException">thrown if the cooordinates are invalid</exception>
         public void MoveTo(int x, int y)
         {
            if (x<0 || x >xCanvasSize || y<0 || y >yCanvasSize)
             {
-                throw new Exception("Invalid screen position CMoveTo" + x + "," + y);
+                throw new CanvasException("Invalid screen position CMoveTo" + x + "," + y);
             }
            xPos = x;
            yPos = y;
@@ -163,20 +162,25 @@ namespace ASEproject
         /// <param name="width">width of the rectangle</param>
         /// <param name="height">height of the rectangle</param>
         /// <param name="filled">indicates whether the rectangle should be filled or not</param>
-        /// <exception cref="Exception">thrown if the dimensions are invalid</exception>
+        /// <exception cref="CanvasException">thrown if the dimensions are invalid</exception>
         public void Rect(int width, int height, bool filled)
         {
             if (width < 0 || height < 0)
             {
-                throw new Exception("Invalid rectangle dimensions " + width + "," + height);
+                throw new CanvasException("Invalid rectangle dimensions " + width + "," + height);
             }
             if (g != null)
             {
-                if (!filled)
+                if (filled)
+                {
+                    g.FillRectangle(brush, xPos, yPos, width, height);
+                }
+                else
                 {
                     g.DrawRectangle(pen, xPos, yPos, width, height);
                 }
             }
+
         }
 
         /// <summary>
@@ -207,12 +211,12 @@ namespace ASEproject
         /// <param name="red">red component of color</param>
         /// <param name="green">green component of color</param>
         /// <param name="blue">blue component of color</param>
-        /// <exception cref="Exception">thrown if any component is out of range</exception>
+        /// <exception cref="CanvasException">thrown if any component is out of range</exception>
         public void SetColour(int red, int green, int blue)
         {
             if (red > 255 || green > 255 || blue > 255)
             { 
-            throw new Exception("Invalid colour" + red + "," + green + "," + blue);
+            throw new CanvasException("Invalid colour" + red + "," + green + "," + blue);
             }
             penColour = Color.FromArgb(red, green, blue); //alpha of 255
             pen = new Pen(penColour, penSize);
@@ -225,14 +229,14 @@ namespace ASEproject
         /// </summary>
         /// <param name="width">width of the triangle</param>
         /// <param name="height">height of the triangle</param>
-        /// <exception cref="Exception">thrown when the values are invalid</exception>
+        /// <exception cref="CanvasException">thrown when the values are invalid</exception>
         public void Tri(int width, int height)
         {
             try
             {
                 if (width < 0 || height < 0)
                 {
-                    throw new Exception("Invalid triangle dimensions " + width + "," + height);
+                    throw new CanvasException("Invalid triangle dimensions " + width + "," + height);
                 }
                 if (g != null)
                 {
@@ -243,7 +247,7 @@ namespace ASEproject
                     g.DrawPolygon(pen, p);
                 }
             }
-            catch (Exception e) 
+            catch (CanvasException e) 
             {
                 throw;
             }
