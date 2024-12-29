@@ -2,9 +2,9 @@
 # ASE Portfolio
 Fill in the fields below.
 
-## Your Name Mahima Gopal Agarwal
+## Mahima Gopal Agarwal
 ### Your Group
-### Your Tutor
+### Resham Bdr Pun
 
 Keep your progress up to date below. Put "DONE" after each section, when you have done it.
 
@@ -13,13 +13,21 @@ Keep your progress up to date below. Put "DONE" after each section, when you hav
 	At least two documented commits to provided on GitHub Classroom BEFORE 12pm 7th October.
 	At least 5 documented commits.
 	Readme.md file filled in correctly.
+
+ DONE
 #### 2 Unit Tests for basic drawing commands above (1) 5 marks
 	Unit Test for moveto command (variables storing pen position are correct)
 	Unit Test for drawTo command (variables storing pen position are correct)
 	Unit Test for a multiline program.
+
+ DONE
 #### 3 XML Comments/documentation produced (1) 5 marks*
 	Fully documented with XML comments and Documentation web site produced 
+
+ DONE
 #### 4 Exception Handling (1) 5 marks*
+
+DONE
 #### 5 Library (DLL) installed and working with reasonable user interface (2) 10 marks
 	Form interface with program window, output window and run button
 	BOOSE DLL library installed 
