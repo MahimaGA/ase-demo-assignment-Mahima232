@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ASEproject;
 using System.Drawing;
+using BOOSE;
 
 /// <summary>
 /// Contains the main classes and logic for the ASEproject application.
@@ -38,15 +39,15 @@ namespace ASEproject
             [TestMethod]
             public void Test_MoveTo_ValidPosition()
             {
-                canvas.MoveTo(100, 150);
-                Assert.AreEqual(100, canvas.Xpos);
-                Assert.AreEqual(150, canvas.Ypos);
+                canvas.MoveTo(200, 250);
+                Assert.AreEqual(200, canvas.Xpos);
+                Assert.AreEqual(250, canvas.Ypos);
             }
             [TestMethod]
-            [ExpectedException(typeof(Exception))]
+            [ExpectedException(typeof(CanvasException))]
             public void Test_MoveTo_InvalidPosition()
             {
-                canvas.MoveTo(-10, -10);
+                canvas.MoveTo(-100, -100);
             }
 
             /// <summary>
@@ -55,18 +56,18 @@ namespace ASEproject
             [TestMethod]
             public void Test_SetColour_ValidValues()
             {
-                canvas.SetColour(120, 200, 255);
-                Assert.AreEqual(Color.FromArgb(255, 120, 200, 255), canvas.PenColour);
+                canvas.SetColour(150, 210, 255);
+                Assert.AreEqual(Color.FromArgb(255, 150, 210, 255), canvas.PenColour);
             }
 
             /// <summary>
             /// Tests setting the pen color with invalid RGB values, expecting an exception.
             /// </summary>
             [TestMethod]
-            [ExpectedException(typeof(Exception))]
+            [ExpectedException(typeof(CanvasException))]
             public void Test_SetColour_InvalidValues()
             {
-                canvas.SetColour(300, 0, 0);
+                canvas.SetColour(280, 0, 0);
             }
 
             /// <summary>
@@ -75,17 +76,17 @@ namespace ASEproject
             [TestMethod]
             public void Test_DrawRectangle()
             {
-                canvas.MoveTo(50, 50);
-                canvas.Rect(100, 50, true);
+                canvas.MoveTo(100, 100);
+                canvas.Rect(200, 100, true);
             }
             /// <summary>
             /// Tests drawing a rectangle with invalid dimensions, expecting an exception.
             /// </summary>
             [TestMethod]
-            [ExpectedException(typeof(Exception))]
+            [ExpectedException(typeof(CanvasException))]
             public void Test_DrawRectangle_InvalidDimensions()
             {
-                canvas.Rect(-10, 20, false);
+                canvas.Rect(-20, 40, false);
             }
 
             /// <summary>
@@ -94,18 +95,18 @@ namespace ASEproject
             [TestMethod]
             public void Test_DrawCircle_Valid()
             {
-                canvas.MoveTo(100, 100);
-                canvas.Circle(50, false);
+                canvas.MoveTo(200, 200);
+                canvas.Circle(100, false);
             }
 
             /// <summary>
             /// Tests drawing a circle with an invalid radius, expecting an exception.
             /// </summary>
             [TestMethod]
-            [ExpectedException(typeof(Exception))]
+            [ExpectedException(typeof(CanvasException))]
             public void Test_DrawCircle_InvalidRadius()
             {
-                canvas.Circle(-10, false);
+                canvas.Circle(-20, false);
             }
 
             /// <summary>
@@ -124,17 +125,17 @@ namespace ASEproject
             public void Test_DrawTriangle_Valid()
             {
                 canvas.MoveTo(100, 100);
-                canvas.Tri(60, 40);
+                canvas.Tri(50, 30);
             }
 
             /// <summary>
             /// Tests drawing a triangle with invalid dimensions, expecting an exception.
             /// </summary>
             [TestMethod]
-            [ExpectedException(typeof(Exception))]
+            [ExpectedException(typeof(CanvasException))]
             public void Test_DrawTriangle_InvalidDimensions()
             {
-                canvas.Tri(-10, 20);
+                canvas.Tri(-20, 30);
             }
 
             /// <summary>
