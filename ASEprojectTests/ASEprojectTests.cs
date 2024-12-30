@@ -3,11 +3,12 @@ using ASEproject;
 using System.Drawing;
 using BOOSE;
 
-/// <summary>
-/// Contains the main classes and logic for the ASEproject application.
-/// </summary>
+
 namespace ASEproject
     {
+        /// <summary>
+        /// Contains the main classes and logic for the ASEproject application.
+        /// </summary>
         [TestClass]
         public class AppCanvasTests
         {
@@ -43,7 +44,10 @@ namespace ASEproject
                 Assert.AreEqual(200, canvas.Xpos);
                 Assert.AreEqual(250, canvas.Ypos);
             }
-            [TestMethod]
+            /// <summary>
+            /// Tests moving the pen to a invalid position.
+            /// </summary>
+        [TestMethod]
             [ExpectedException(typeof(CanvasException))]
             public void Test_MoveTo_InvalidPosition()
             {
