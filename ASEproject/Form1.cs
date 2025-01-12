@@ -23,13 +23,14 @@ namespace ASEproject
             canvas = new AppCanvas();
             commandFactory = new AppCommandFactory();
             storedProgram = new StoredProgram(canvas);
-            parser = new Parser(commandFactory, storedProgram);
+            parser = new AppParser(commandFactory, storedProgram);
         }
 
         /// <summary>
         /// handles the run button click event
         /// </summary>
         /// <param name="sender">source of the event</param>
+        /// 
         /// <param name="e">event argument</param>
         private void Run_Click(object sender, EventArgs e)
         {
