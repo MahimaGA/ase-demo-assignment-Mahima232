@@ -40,9 +40,16 @@ namespace ASEproject
         public override void Execute()
         {
             //base.Execute();
-            text = base.Parameters[0];
+            try
+            {
+                text = base.Program.EvaluateExpression(base.Parameters[0]);
+            }
+            catch (StoredProgramException)
+            { 
+                text = base.Program.EvaluateExpressionWithString(base.Parameters[0]);
+            }
 
-            base.Canvas.WriteText(base.Parameters[0]);
+            base.Canvas.WriteText(text);
         }
 
         /// <summary>
