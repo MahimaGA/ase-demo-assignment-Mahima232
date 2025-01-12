@@ -41,6 +41,10 @@ namespace ASEproject
             {
                 return new Reset();
             }
+            if (commandType == "int")
+            {
+                return new AppInt();
+            }
 
             try
             {
