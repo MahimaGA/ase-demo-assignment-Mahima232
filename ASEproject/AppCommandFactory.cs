@@ -45,6 +45,10 @@ namespace ASEproject
             {
                 return new AppInt();
             }
+            if (commandType == "real")
+            {
+                return new AppReal();
+            }
 
             try
             {
