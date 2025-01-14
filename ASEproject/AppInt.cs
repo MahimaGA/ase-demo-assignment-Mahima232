@@ -9,7 +9,9 @@ namespace ASEproject
 {
     public class AppInt : Int, ICommand
     {
-        public AppInt()
-        { }
+        public override void Restrictions()
+        {
+
+        }
     }
 }
