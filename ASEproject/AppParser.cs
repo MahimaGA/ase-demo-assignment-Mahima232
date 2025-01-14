@@ -20,6 +20,7 @@ namespace ASEproject
 
         public override void ParseProgram(string program)
         {
+            program += "\nint x"; //for end to work
             string text = "";
             string[] array = program.Split('\n');
             Program.SyntaxOk = false;

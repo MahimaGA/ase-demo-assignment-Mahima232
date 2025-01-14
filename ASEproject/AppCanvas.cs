@@ -30,6 +30,8 @@ namespace ASEproject
         
         private Graphics? g; //declaring g as nullable if it can remain nullable temporarily
 
+        public event EventHandler<(int X, int Y)>? PenPositionChanged;
+
 
         /// <summary>
         /// initializes new instance of the <see cref="AppCanvas"/> class
@@ -50,6 +52,7 @@ namespace ASEproject
         { 
             get => xPos; 
             set => xPos = value; 
+
         }
 
         /// <summary>
@@ -129,6 +132,15 @@ namespace ASEproject
             }
             xPos = toX;
             yPos = toY; //update pen position
+
+            OnPenPositionChanged();  // Notify Form1 of position change
+
+        }
+
+        
+        private void OnPenPositionChanged()
+        {
+            PenPositionChanged?.Invoke(this, (xPos, yPos));
         }
 
         /// <summary>
@@ -154,6 +166,8 @@ namespace ASEproject
             }
            xPos = x;
            yPos = y;
+           OnPenPositionChanged();  // Notify Form1 of position change
+
         }
 
         /// <summary>
@@ -180,6 +194,7 @@ namespace ASEproject
                     g.DrawRectangle(pen, xPos, yPos, width, height);
                 }
             }
+
 
         }
 
@@ -263,5 +278,6 @@ namespace ASEproject
             Font font = new Font("Arial", 10);
             g.DrawString(text, font, brush, Xpos, Ypos);
         }
+
     }
 }

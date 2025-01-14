@@ -36,8 +36,11 @@
             fileToolStripMenuItem = new ToolStripMenuItem();
             saveToolStripMenuItem = new ToolStripMenuItem();
             loadToolStripMenuItem = new ToolStripMenuItem();
+            exitToolStripMenuItem = new ToolStripMenuItem();
             Reset = new Button();
             Clear = new Button();
+            Position = new Label();
+            ProgramWindow2 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)OutputWindow).BeginInit();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -54,10 +57,12 @@
             // 
             // ProgramWindow
             // 
-            ProgramWindow.Location = new Point(50, 180);
+            ProgramWindow.AutoCompleteCustomSource.AddRange(new string[] { "MoveTo", "DrawTo", "Circle", "Rect", "Clear", "Reset" });
+            ProgramWindow.AutoCompleteMode = AutoCompleteMode.Suggest;
+            ProgramWindow.Location = new Point(50, 248);
             ProgramWindow.Multiline = true;
             ProgramWindow.Name = "ProgramWindow";
-            ProgramWindow.Size = new Size(629, 481);
+            ProgramWindow.Size = new Size(629, 413);
             ProgramWindow.TabIndex = 1;
             // 
             // OutputWindow
@@ -93,7 +98,7 @@
             // 
             // fileToolStripMenuItem
             // 
-            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { saveToolStripMenuItem, loadToolStripMenuItem });
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { saveToolStripMenuItem, loadToolStripMenuItem, exitToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             fileToolStripMenuItem.Size = new Size(87, 45);
             fileToolStripMenuItem.Text = "File";
@@ -111,6 +116,13 @@
             loadToolStripMenuItem.Size = new Size(249, 54);
             loadToolStripMenuItem.Text = "Load";
             loadToolStripMenuItem.Click += loadToolStripMenuItem_Click;
+            // 
+            // exitToolStripMenuItem
+            // 
+            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            exitToolStripMenuItem.Size = new Size(249, 54);
+            exitToolStripMenuItem.Text = "Exit";
+            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // Reset
             // 
@@ -132,11 +144,28 @@
             Clear.UseVisualStyleBackColor = true;
             Clear.Click += Clear_Click;
             // 
+            // Position
+            // 
+            Position.AutoSize = true;
+            Position.Location = new Point(728, 693);
+            Position.Name = "Position";
+            Position.Size = new Size(0, 41);
+            Position.TabIndex = 7;
+            // 
+            // ProgramWindow2
+            // 
+            ProgramWindow2.Location = new Point(50, 180);
+            ProgramWindow2.Name = "ProgramWindow2";
+            ProgramWindow2.Size = new Size(629, 47);
+            ProgramWindow2.TabIndex = 8;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(17F, 41F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1461, 789);
+            ClientSize = new Size(1461, 848);
+            Controls.Add(ProgramWindow2);
+            Controls.Add(Position);
             Controls.Add(Clear);
             Controls.Add(Reset);
             Controls.Add(DarkMode);
@@ -166,5 +195,7 @@
         private ToolStripMenuItem loadToolStripMenuItem;
         private Button Reset;
         private Button Clear;
+        private ToolStripMenuItem exitToolStripMenuItem;
+        private TextBox ProgramWindow2;
     }
 }

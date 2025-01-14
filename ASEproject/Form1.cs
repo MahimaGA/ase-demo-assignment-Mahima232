@@ -15,18 +15,32 @@ namespace ASEproject
 
         private bool isDarkMode = false;
 
+        private System.Windows.Forms.Label Position; //label fro position display
+
+
 
         /// <summary>
-        /// initializes new instances of the <see cref"Form1"/> class
+        /// initializes new instances of the <see cref="Form1"/> class
         /// </summary>
         public Form1()
         {
             InitializeComponent();
+
             Debug.WriteLine(AboutBOOSE.about());
             canvas = new AppCanvas();
             commandFactory = new AppCommandFactory();
-            storedProgram = new StoredProgram(canvas);
+            storedProgram = new AppStoredProgram(canvas);
             parser = new AppParser(commandFactory, storedProgram);
+
+            ((AppCanvas)canvas).PenPositionChanged += Canvas_PenPositionChanged; //for pen position when updated
+
+            InitializePositionLabel();
+            ProgramWindow2.Focus();
+            ConfigureAutoComplete();
+
+            ProgramWindow2.KeyDown += ProgramWindow2_KeyDown;
+
+
         }
 
         /// <summary>
@@ -74,8 +88,8 @@ namespace ASEproject
         private void ToggleDarkMode(bool enableDarkMode)
         {
             // Define colors for dark mode and light mode
-            Color backgroundColor = enableDarkMode ? Color.Black : Color.White;
-            Color textColor = enableDarkMode ? Color.White : Color.Black;
+            Color backgroundColor = enableDarkMode ? System.Drawing.Color.Black : System.Drawing.Color.White;
+            Color textColor = enableDarkMode ? System.Drawing.Color.White : System.Drawing.Color.Black;
 
             // Apply colors to the form
             this.BackColor = backgroundColor;
@@ -84,6 +98,8 @@ namespace ASEproject
             // Apply to the textbox
             ProgramWindow.BackColor = backgroundColor;
             ProgramWindow.ForeColor = textColor;
+            ProgramWindow2.BackColor = backgroundColor;
+            ProgramWindow2.ForeColor = textColor;
 
             // Apply to the canvas
             OutputWindow.BackColor = backgroundColor;
@@ -170,5 +186,105 @@ namespace ASEproject
             canvas.Reset();
             Refresh();
         }
+
+        private void Color_Click(object sender, EventArgs e)
+        {
+            // You can use a color picker dialog (like ColorDialog) to select a color.
+            ColorDialog colorDialog = new ColorDialog();
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                canvas.SetColour(colorDialog.Color.R, colorDialog.Color.G, colorDialog.Color.B);
+                Refresh();
+            }
+        }
+
+        private void Canvas_PenPositionChanged(object sender, (int X, int Y) e)
+        {
+            Console.WriteLine($"Pen Position: ({e.X}, {e.Y})");
+
+            Position.Text = $"Position: ({e.X}, {e.Y})";
+            Position.Refresh();
+            Position.Visible = true;  // Ensure the label is visible
+
+
+        }
+
+        private void InitializePositionLabel()
+        {
+            this.Position = new Label
+            {
+                Name = "Position",
+                Text = "Position: (0, 0)",
+                Location = new Point(728, 693), // Adjust position as needed
+                AutoSize = true
+            };
+            this.Controls.Add(Position);
+        }
+
+        private void UpdatePenPosition(int x, int y)
+        {
+            Position.Text = $"Position: ({x}, {y})";
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void ConfigureAutoComplete()
+        {
+            // Create an AutoCompleteStringCollection and add the commands
+            AutoCompleteStringCollection autoCompleteCollection = new AutoCompleteStringCollection();
+
+            autoCompleteCollection.Add("MoveTo");
+            autoCompleteCollection.Add("DrawTo");
+            autoCompleteCollection.Add("Circle");
+            autoCompleteCollection.Add("Rect");
+            autoCompleteCollection.Add("Clear");
+            autoCompleteCollection.Add("Reset");
+            autoCompleteCollection.Add("Pen");
+            autoCompleteCollection.Add("Tri");
+            autoCompleteCollection.Add("Write");
+            autoCompleteCollection.Add("Int");
+            autoCompleteCollection.Add("Real");
+            autoCompleteCollection.Add("Peek");
+            autoCompleteCollection.Add("Poke");
+            autoCompleteCollection.Add("Array");
+            autoCompleteCollection.Add("If");
+            autoCompleteCollection.Add("Else");
+            autoCompleteCollection.Add("For");
+            autoCompleteCollection.Add("While");
+            autoCompleteCollection.Add("End");
+
+            ProgramWindow2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            ProgramWindow2.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            ProgramWindow2.AutoCompleteCustomSource = autoCompleteCollection;
+
+            Refresh();
+
+        }
+
+        private void ProgramWindow2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Prevent the 'ding' sound on Enter
+                try
+                {
+                    String text = ProgramWindow2.Text;
+
+                    parser.ParseProgram(text);
+                    storedProgram.Run();
+                    Refresh();
+                    ProgramWindow2.Text ="";
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error executing command: {ex.Message}", "Command Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
     }
 }
