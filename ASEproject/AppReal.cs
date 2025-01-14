@@ -10,5 +10,8 @@ namespace ASEproject
     public class AppReal : Real, ICommand
     {
         public AppReal() { }
+
+        public override void Restrictions() { }
+
     }
 }
