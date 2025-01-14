@@ -49,6 +49,39 @@ namespace ASEproject
             {
                 return new AppReal();
             }
+            if (commandType == "peek")
+            {
+                return new AppPeek();
+            }
+            if (commandType == "poke")
+            {
+                return new AppPoke();
+            }
+            if (commandType == "array")
+            {
+                return new AppArray();
+            }
+            if (commandType == "if")
+            {
+                return new AppIf();
+            }
+            if (commandType == "else")
+            {
+                return new AppElse();
+            }
+            if (commandType == "for")
+            {
+                return new AppFor();
+            }
+            if (commandType == "while")
+            {
+                return new AppWhile();
+            }
+            if (commandType == "end")
+            {
+                return new AppEnd();
+            }
+
 
             try
             {
