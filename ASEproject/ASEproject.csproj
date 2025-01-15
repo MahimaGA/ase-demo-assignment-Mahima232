@@ -7,7 +7,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <DocumentationFile>obj\Debug\net8.0-windows\ASEproject.xml</DocumentationFile>
+    <DocumentationFile>D:\repos\ase-demo-assignment-Mahima232\ASEproject\bin\Debug\net8.0-windows\ASEproject.xml</DocumentationFile>
     <BaseOutputPath>D:\repos\ase-demo-assignment-Mahima232\ASEproject\bin</BaseOutputPath>
   </PropertyGroup>
 
