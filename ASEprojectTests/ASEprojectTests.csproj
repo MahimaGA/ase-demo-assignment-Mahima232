@@ -8,6 +8,7 @@
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <DocumentationFile>D:\repos\ase-demo-assignment-Mahima232\ASEprojectTests\bin\Debug\net8.0-windows\ASEprojectTests.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
