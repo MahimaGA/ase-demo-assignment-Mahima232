@@ -16,20 +16,74 @@ namespace ASEproject
     /// </summary>
     public class AppCanvas : ICanvas
     {
-        private int xPos, yPos; // Pen position
+        /// <summary>
+        /// Represents the x-coordinate of the pen's current position on the canvas.
+        /// </summary>
+        private int xPos;
+
+        /// <summary>
+        /// Represents the y-coordinate of the pen's current position on the canvas.
+        /// </summary>
+        private int yPos;
+
+        /// <summary>
+        /// The current color of the pen.
+        /// </summary>
         private Color penColour;
+
+        /// <summary>
+        /// The pen used for drawing on the canvas.
+        /// </summary>
         private Pen pen;
+
+        /// <summary>
+        /// The brush used for filling shapes on the canvas.
+        /// </summary>
         private SolidBrush brush;
+
+        /// <summary>
+        /// The size of the pen stroke in pixels.
+        /// Defaults to 5 pixels.
+        /// </summary>
         private int penSize = 5;
-        public int xCanvasSize, yCanvasSize;
-        const int XSIZE = 640; // Standard size of canvas
-        const int YSIZE = 480;
 
-        Bitmap bm = new Bitmap(XSIZE, YSIZE);
+        /// <summary>
+        /// The width of the canvas in pixels.
+        /// </summary>
+        public int xCanvasSize;
 
-        private Graphics? g; // Declaring g as nullable if it can remain nullable temporarily
+        /// <summary>
+        /// The height of the canvas in pixels.
+        /// </summary>
+        public int yCanvasSize;
 
+        /// <summary>
+        /// The standard width of the canvas in pixels.
+        /// </summary>
+        private const int XSIZE = 640;
+
+        /// <summary>
+        /// The standard height of the canvas in pixels.
+        /// </summary>
+        private const int YSIZE = 480;
+
+        /// <summary>
+        /// The bitmap representing the drawable area of the canvas.
+        /// </summary>
+        private Bitmap bm = new Bitmap(XSIZE, YSIZE);
+
+        /// <summary>
+        /// The graphics object used for drawing on the canvas.
+        /// Nullable to allow deferred initialization.
+        /// </summary>
+        private Graphics? g;
+
+        /// <summary>
+        /// Event triggered when the pen position changes on the canvas.
+        /// Provides the new pen coordinates as an event argument.
+        /// </summary>
         public event EventHandler<(int X, int Y)>? PenPositionChanged;
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AppCanvas"/> class.
@@ -202,6 +256,8 @@ namespace ASEproject
         {
             xPos = yPos = 0;
             penColour = Color.Black;
+            OnPenPositionChanged();  // Notify listeners of position change
+
         }
 
         /// <summary>

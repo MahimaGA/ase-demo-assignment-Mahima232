@@ -15,7 +15,6 @@ namespace ASEproject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AppElse"/> class.
-        /// Calls the <see cref="ReduceRestrictions"/> method to reduce restrictions for this command.
         /// </summary>
         public AppElse()
         {

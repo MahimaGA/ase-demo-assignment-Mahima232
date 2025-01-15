@@ -15,7 +15,6 @@ namespace ASEproject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AppIf"/> class.
-        /// Calls the <see cref="ReduceRestrictions"/> method to reduce restrictions for this command.
         /// </summary>
         public AppIf()
         {

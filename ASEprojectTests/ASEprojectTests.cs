@@ -8,10 +8,10 @@ using ASEproject;
 using BOOSE;
 
 
-namespace ASEproject
+namespace ASEprojectTests
 {
     /// <summary>
-    /// Contains the main classes and logic for the ASEproject application.
+    /// Contains the AppCAnvas tests
     /// </summary>
     [TestClass]
     public class AppCanvasTests

@@ -4,16 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ASEproject;
 
-/// <summary>
-/// Contains the main classes and logic for the ASEproject application.
-/// </summary>
+
 namespace ASEproject
 {
     /// <summary>
     /// CommandFactory class for adding more commands
     /// </summary>
-    public class AppCommandFactory : CommandFactory
+    public class AppCommandFactory : CommandFactory , ICommandFactory
     {
         /// <summary>
         /// Creates instance of commandType 

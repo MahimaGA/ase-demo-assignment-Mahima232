@@ -5,30 +5,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-/// <summary>
-/// Contains the main classes and logic for the ASEproject application.
-/// </summary>
+
 namespace ASEproject
 {
     /// <summary>
-    /// represents a command to draw a triangle on canvas
+    /// Represents a command to draw a triangle on the canvas.
+    /// Inherits from <see cref="CommandTwoParameters"/>.
     /// </summary>
     public class Tri : CommandTwoParameters
     {
-        private int width, height;
         /// <summary>
-        /// initializes new instance of the <see cref="Tri"/> class 
+        /// The width of the triangle.
+        /// </summary>
+        private int width;
+
+        /// <summary>
+        /// The height of the triangle.
+        /// </summary>
+        private int height;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Tri"/> class.
         /// </summary>
         public Tri()
         {
         }
 
         /// <summary>
-        /// initializes new instances of the <see cref="Tri"/> class with specified dimensions
+        /// Initializes a new instance of the <see cref="Tri"/> class with specified dimensions.
         /// </summary>
-        /// <param name="c">the canvas</param>
-        /// <param name="width">the width of the triangle</param>
-        /// <param name="height">the height of the triangle</param>
+        /// <param name="c">The canvas on which the triangle will be drawn.</param>
+        /// <param name="width">The width of the triangle.</param>
+        /// <param name="height">The height of the triangle.</param>
         public Tri(Canvas c, int width, int height)
             : base(c)
         {
@@ -37,7 +45,8 @@ namespace ASEproject
         }
 
         /// <summary>
-        /// executes the triangle drawing command
+        /// Executes the command to draw a triangle on the canvas.
+        /// Uses the parameters to define the width and height of the triangle.
         /// </summary>
         public override void Execute()
         {
@@ -45,19 +54,22 @@ namespace ASEproject
             width = base.Paramsint[0];
             height = base.Paramsint[1];
 
-            base.Canvas.Tri(base.Paramsint[0], base.Paramsint[1]);
+            base.Canvas.Tri(width, height);
         }
 
         /// <summary>
-        /// validates the parameters for the triangle drawing command
+        /// Validates the parameters provided for the triangle drawing command.
+        /// Ensures that exactly two parameters are provided.
         /// </summary>
-        /// <param name="parameterList">list of parameters to validate</param>
-        /// <exception cref="CommandException">thrown if the parameter list is invalid</exception>
+        /// <param name="parameterList">The list of parameters to validate.</param>
+        /// <exception cref="CommandException">
+        /// Thrown if the number of parameters is not equal to 2.
+        /// </exception>
         public override void CheckParameters(string[] parameterList)
         {
             if (parameterList.Length != 2)
             {
-                throw new CommandException("There must be 2 parameters");
+                throw new CommandException("There must be exactly 2 parameters for the 'Tri' command.");
             }
         }
     }
