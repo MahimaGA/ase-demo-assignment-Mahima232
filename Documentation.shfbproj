@@ -10,19 +10,35 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{99ca8fa1-26ef-4625-9d70-b0fc2a9a6647}</ProjectGuid>
+    <ProjectGuid>{33154cc9-4bc7-467f-b2e1-b717f3d63a04}</ProjectGuid>
     <SHFBSchemaVersion>2017.9.26.0</SHFBSchemaVersion>
     <!-- AssemblyName, Name, and RootNamespace are not used by SHFB but Visual Studio adds them anyway -->
     <AssemblyName>Documentation</AssemblyName>
     <RootNamespace>Documentation</RootNamespace>
     <Name>Documentation</Name>
     <!-- SHFB properties -->
-    <FrameworkVersion>.NET Framework 4.7.2</FrameworkVersion>
+    <FrameworkVersion>.NET Core/.NET Standard/.NET 5.0+</FrameworkVersion>
     <OutputPath>.\Help\</OutputPath>
     <HtmlHelpName>Documentation</HtmlHelpName>
     <Language>en-US</Language>
+    <DocumentationSources>
+      <DocumentationSource sourceFile="ASEproject\bin\Debug\net8.0-windows\ASEproject.dll" />
+      <DocumentationSource sourceFile="ASEproject\bin\Debug\net8.0-windows\ASEproject.xml" />
+    </DocumentationSources>
+    <NamespaceSummaries>
+      <NamespaceSummaryItem name="(global)" isDocumented="False">The ASEproject namespace contains classes and functionality</NamespaceSummaryItem>
+<NamespaceSummaryItem name="ASEproject" isDocumented="True">The ASEproject namespace contains classes and functionality</NamespaceSummaryItem></NamespaceSummaries>
+    <HelpTitle>A Sandcastle Documented Class Library</HelpTitle>
+    <HelpFileVersion>1.0.0.0</HelpFileVersion>
+    <NamingMethod>Guid</NamingMethod>
+    <ContentPlacement>AboveNamespaces</ContentPlacement>
+    <RootNamespaceContainer>False</RootNamespaceContainer>
+    <NamespaceGrouping>False</NamespaceGrouping>
+    <MaximumGroupParts>2</MaximumGroupParts>
+    <Preliminary>False</Preliminary>
+    <SdkLinkTarget>Blank</SdkLinkTarget>
     <HelpFileFormat>Website</HelpFileFormat>
-    <SyntaxFilters>C#</SyntaxFilters>
+    <SyntaxFilters>Standard</SyntaxFilters>
     <PresentationStyle>Default2022</PresentationStyle>
     <CleanIntermediates>True</CleanIntermediates>
     <KeepLogFile>True</KeepLogFile>
@@ -30,18 +46,6 @@
     <IndentHtml>False</IndentHtml>
     <BuildAssemblerVerbosity>OnlyWarningsAndErrors</BuildAssemblerVerbosity>
     <SaveComponentCacheCapacity>100</SaveComponentCacheCapacity>
-    <DocumentationSources>
-      <DocumentationSource sourceFile="ASEproject\bin\Debug\net8.0-windows\Debug\net8.0-windows\ASEproject.dll" />
-      <DocumentationSource sourceFile="ASEproject\bin\Debug\net8.0-windows\Debug\net8.0-windows\ASEproject.xml" />
-    </DocumentationSources>
-    <NamespaceSummaries>
-      <NamespaceSummaryItem name="ASEproject" isDocumented="True">An interpreter for BOOSE language</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="ASEproject.MakeCommand" isDocumented="True">Commands related to the ASEproject</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="(global)" isDocumented="True" />
-    </NamespaceSummaries>
-    <VisibleItems>Attributes, ExplicitInterfaceImplementations, InheritedMembers, Internals, Privates, PrivateFields, Protected, SealedProtected</VisibleItems>
-    <ComponentConfigurations />
-    <MissingTags>Summary, Parameter, Returns, Namespace, TypeParameter</MissingTags>
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in order for Visual Studio to perform
 			 the build.  The others are optional common platform types that may appear. -->
