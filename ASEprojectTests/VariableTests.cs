@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using ASEproject;
 using BOOSE;
-namespace ASEproject
+
+namespace ASEprojectTests
 {
     /// <summary>
-    /// Contains the main classes and logic for the ASEproject application.
+    /// Contains the variable methods test
     /// </summary>
 
     [TestClass]
@@ -124,40 +125,6 @@ namespace ASEproject
             parser.ParseProgram(command);
             program.Run();  // Expecting exception
         }
-
-        /// <summary>
-        /// Tests invalid integer usage by referencing an uninitialized variable.
-        /// Ensures that the execution throws an exception as expected.
-        /// </summary>
-        //[TestMethod]
-        //public void TestUninitializedIntVariable_ShouldThrowException()
-        //{
-        //    string command = @"
-        //        int length
-        //        pen 255,255,0
-        //        moveto 200,200
-        //        rect length, 50";  // 'length' is uninitialized
-
-        //    AppCommandFactory factory = new AppCommandFactory();
-        //    AppStoredProgram program = new AppStoredProgram(canvas);
-        //    Parser parser = new Parser(factory, program);
-
-        //    try
-        //    {
-        //        parser.ParseProgram(command);
-        //        program.Run();  // Expecting exception
-        //        Assert.Fail("Expected an exception for uninitialized variable, but none was thrown.");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Log the exception for debugging
-        //        Console.WriteLine($"Caught exception: {ex.Message}");
-
-        //        // Ensure it's the expected exception type
-        //        Assert.AreEqual(typeof(System.Exception), ex.GetType(), $"Unexpected exception type: {ex.GetType()}");
-        //    }
-        //}
-
 
     }
 }

@@ -11,7 +11,7 @@ namespace ASEproject
     /// Represents a stored program with conditional command stack functionality.
     /// Inherits from the <see cref="StoredProgram"/> class and provides custom implementations for managing commands.
     /// </summary>
-    public class AppStoredProgram : StoredProgram
+    public class AppStoredProgram : StoredProgram, IStoredProgram
     {
         private Stack stack = new Stack();
 

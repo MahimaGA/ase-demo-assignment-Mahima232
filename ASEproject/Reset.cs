@@ -14,12 +14,14 @@ namespace ASEproject
     public class Reset : CommandOneParameter
     {
         private string[] parameters;
+        private Color penColour;
 
         /// <summary>
         /// initializes a new instance of the <see cref="Reset"/> class
         /// </summary>
         public Reset()
         {
+
         }
 
         /// <summary>
@@ -28,7 +30,8 @@ namespace ASEproject
         /// <param name="canvas">the canvas to reset</param>
         public Reset(Canvas canvas) : base(canvas)
         {
-
+                canvas.Reset();
+            
         }
 
         /// <summary>
