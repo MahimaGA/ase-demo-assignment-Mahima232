@@ -81,6 +81,10 @@ namespace ASEproject
             {
                 return new AppEnd();
             }
+            if (commandType == "method")
+            {
+                return new AppMethod();
+            }
 
 
             try

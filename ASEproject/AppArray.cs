@@ -7,8 +7,18 @@ using System.Threading.Tasks;
 
 namespace ASEproject
 {
+    /// <summary>
+    /// Represents a custom implementation of the Array class that also implements ICommand.
+    /// This class processes array parameters for commands in the application.
+    /// </summary>
     public class AppArray : BOOSE.Array, ICommand
     {
+        /// <summary>
+        /// Checks the validity of the parameters passed to the array command.
+        /// Throws an exception if the parameters are not valid.
+        /// </summary>
+        /// <param name="parameterList">An array of strings containing the parameters to be checked.</param>
+        /// <exception cref="CommandException">Thrown when the number of parameters is not 3 or 4.</exception>
         public override void CheckParameters(string[] parameterList)
         {
             base.Parameters = base.ParameterList.Trim().Split(" ");
@@ -18,6 +28,11 @@ namespace ASEproject
             }
         }
 
+        /// <summary>
+        /// Processes the array parameters for compiling, either for a 'peek' or 'poke' operation.
+        /// </summary>
+        /// <param name="peekOrPoke">A boolean indicating whether the operation is a 'peek' (false) or 'poke' (true) operation.</param>
+        /// <exception cref="CommandException">Thrown when the array parameters are invalid or the array does not exist.</exception>
         protected override void ProcessArrayParametersCompile(bool peekOrPoke)
         {
             int num;
